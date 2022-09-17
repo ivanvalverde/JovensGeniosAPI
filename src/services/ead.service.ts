@@ -1,0 +1,69 @@
+import {
+  Injectable,
+} from '@nestjs/common';
+import { Question } from '../models/question.model';
+import { db } from '../database/db';
+import {
+  validateIfDbHasGivenSubject,
+  validateIfFoundGivenQuestionById,
+  validateQuestionInput,
+} from '../shared/validations';
+
+@Injectable()
+export class EadService {
+  getSubjects(): string[] {
+    const subjects: string[] = [];
+    for (let key in db) {
+      subjects.push(db[key].name);
+    }
+    return subjects;
+  }
+
+  getQuestionsFromSubject(subject: string): Question[] {
+    validateIfDbHasGivenSubject(subject);
+    return db[subject].exercises;
+  }
+
+  getQuestionFromSubjectById(subject: string, id: string): Question {
+    validateIfDbHasGivenSubject(subject);
+    const questionSelected = db[subject].exercises.filter(
+      (question: Question) => {
+        return question.id === Number(id);
+      },
+    );
+    validateIfFoundGivenQuestionById(questionSelected);
+    return questionSelected[0];
+  }
+
+  createNewQuestionForSubject(subject: string, question: Question): string {
+    validateIfDbHasGivenSubject(subject);
+    validateQuestionInput(question);
+
+    db[subject].exercises.push({
+      ...question,
+      id: db[subject].exercises.length + 1,
+    });
+    return 'Questão criada com sucesso!';
+  }
+
+  updateQuestionForSubject(
+    subject: string,
+    question: Question,
+    id: string,
+  ): Question {
+    validateIfDbHasGivenSubject(subject);
+    validateQuestionInput(question);
+    const questionSelected: Question[] = db[subject].exercises.filter(
+      (question: Question) => {
+        return question.id === Number(id);
+      },
+    );
+    validateIfFoundGivenQuestionById(questionSelected);
+    questionSelected[0] = {
+      ...question,
+      id: questionSelected[0].id,
+    };
+    db[subject].exercises[questionSelected[0].id - 1] = questionSelected[0];
+    return questionSelected[0];
+  }
+}
