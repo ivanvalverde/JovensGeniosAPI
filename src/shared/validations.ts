@@ -20,7 +20,9 @@ export const validateQuestionInput = (question: Question): void => {
     );
   }
   if (!question.alternatives) {
-    throw new BadRequestException('Devem ser informadas as opções de resposta para a pergunta!');
+    throw new BadRequestException(
+      'Devem ser informadas as opções de resposta para a pergunta!',
+    );
   }
   if (question.alternatives.length < 4) {
     throw new BadRequestException('O número de alternativas mínimo é 4.');
@@ -28,9 +30,9 @@ export const validateQuestionInput = (question: Question): void => {
 };
 
 export const validateIfFoundGivenQuestionById = (questions: Question[]) => {
-    if (!questions.length) {
-        throw new NotFoundException(
-          'Não existe uma questão relacionada a este id para a matéria especificada.',
-        );
-      }
-}
+  if (!questions.length) {
+    throw new NotFoundException(
+      'Não existe uma questão relacionada a este id para a matéria especificada.',
+    );
+  }
+};

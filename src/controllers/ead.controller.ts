@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { Question } from '../models/question.model';
 import { EadService } from '../services/ead.service';
 
@@ -39,5 +47,13 @@ export class EadController {
     @Body() input: Question,
   ): Question {
     return this.eadService.updateQuestionForSubject(subject, input, id);
+  }
+
+  @Delete(':subject/questions/:id/delete')
+  deleteQuestionForSubject(
+    @Param('subject') subject: string,
+    @Param('id') id: string,
+  ): string {
+    return this.eadService.deleteQuestionForSubject(subject, id);
   }
 }

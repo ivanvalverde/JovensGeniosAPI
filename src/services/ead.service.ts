@@ -1,6 +1,4 @@
-import {
-  Injectable,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Question } from '../models/question.model';
 import { db } from '../database/db';
 import {
@@ -13,7 +11,7 @@ import {
 export class EadService {
   getSubjects(): string[] {
     const subjects: string[] = [];
-    for (let key in db) {
+    for (const key in db) {
       subjects.push(db[key].name);
     }
     return subjects;
@@ -65,5 +63,22 @@ export class EadService {
     };
     db[subject].exercises[questionSelected[0].id - 1] = questionSelected[0];
     return questionSelected[0];
+  }
+
+  deleteQuestionForSubject(subject: string, id: string): string {
+    validateIfDbHasGivenSubject(subject);
+    const questionSelected: Question[] = db[subject].exercises.filter(
+      (question: Question) => {
+        return question.id === Number(id);
+      },
+    );
+    validateIfFoundGivenQuestionById(questionSelected);
+    const newQuestionsList: Question[] = db[subject].exercises.filter(
+      (question: Question) => {
+        return question.id !== Number(id);
+      },
+    );
+    db[subject].exercises = newQuestionsList;
+    return 'Deleção realizada com sucesso!';
   }
 }

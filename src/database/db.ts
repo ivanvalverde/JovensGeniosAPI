@@ -1,13 +1,12 @@
-import { Subject } from "../models/subjects.model";
+import { Subject } from '../models/subjects.model';
 
-export const db: {[key: string]: Subject;} = {
+export const db: { [key: string]: Subject } = {
   math: {
     name: 'Matemática',
     exercises: [
       {
         id: 1,
-        question:
-          'Podemos afirmar que a eq. x² – 2x +1 = 0 possui:',
+        question: 'Podemos afirmar que a eq. x² – 2x +1 = 0 possui:',
         alternatives: [
           'A) Nenhuma solução real.',
           'B) Uma única solução real.',
