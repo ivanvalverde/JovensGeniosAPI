@@ -7,6 +7,7 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
+import { Discipline } from '../models/discipline.model';
 import { Question } from '../models/question.model';
 import { EadService } from '../services/ead.service';
 
@@ -15,7 +16,7 @@ export class EadController {
   constructor(private readonly eadService: EadService) {}
 
   @Get('subjects')
-  getSubjects(): string[] {
+  getSubjects(): Discipline[] {
     return this.eadService.getSubjects();
   }
 

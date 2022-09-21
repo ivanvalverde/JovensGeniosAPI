@@ -6,13 +6,14 @@ import {
   validateIfFoundGivenQuestionById,
   validateQuestionInput,
 } from '../shared/validations';
+import { Discipline } from '../models/discipline.model';
 
 @Injectable()
 export class EadService {
-  getSubjects(): string[] {
-    const subjects: string[] = [];
+  getSubjects(): Discipline[] {
+    const subjects: Discipline[] = [];
     for (const key in db) {
-      subjects.push(db[key].name);
+      subjects.push({ name: db[key].name, path: key });
     }
     return subjects;
   }

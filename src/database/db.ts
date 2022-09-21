@@ -7,6 +7,7 @@ export const db: { [key: string]: Subject } = {
       {
         id: 1,
         question: 'Podemos afirmar que a eq. x² – 2x +1 = 0 possui:',
+        title: 'Equações quadráticas',
         alternatives: [
           'A) Nenhuma solução real.',
           'B) Uma única solução real.',
@@ -24,6 +25,7 @@ export const db: { [key: string]: Subject } = {
       {
         id: 1,
         question: 'Quais destes eram grandes navegadores?',
+        title: 'Grandes navegações',
         alternatives: [
           'A) Jean-Jacques Rosseau e René Descartes.',
           'B) Isaac Newton e Einstein.',
@@ -40,6 +42,7 @@ export const db: { [key: string]: Subject } = {
       {
         id: 1,
         question: 'Qual dos seguintes é o mais denso:',
+        title: 'Diferença de densidade',
         alternatives: [
           'A) Mercúrio',
           'B) Leite Integral',
@@ -56,6 +59,7 @@ export const db: { [key: string]: Subject } = {
       {
         id: 1,
         question: 'Assinale a frase em que à ou às está mal empregado.',
+        title: 'Emprego da crase',
         alternatives: [
           'A) Amores à vista.',
           'B) Pintura à óleo.',
@@ -72,6 +76,7 @@ export const db: { [key: string]: Subject } = {
       {
         id: 1,
         question: 'Qual a capital do Ceará?',
+        title: 'Estados brasileiros',
         alternatives: [
           'A) Belém',
           'B) Fortaleza',
@@ -89,6 +94,7 @@ export const db: { [key: string]: Subject } = {
       {
         id: 1,
         question: 'Quem pintou o quadro "O Grito"',
+        title: 'Expressionismo',
         alternatives: [
           'A) Picasso',
           'B) Michelangelo',
